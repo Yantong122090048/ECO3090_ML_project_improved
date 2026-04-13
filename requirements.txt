@@ -1,0 +1,6 @@
+# torch wheels built against numpy 1.x break with numpy 2.x (_ARRAY_API / from_numpy)
+numpy>=1.26,<2
+pandas
+torch
+tqdm
+matplotlib
