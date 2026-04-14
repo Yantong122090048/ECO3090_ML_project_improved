@@ -5,7 +5,6 @@ from dataclasses import dataclass
 class EnvConfig:
     n_levels: int = 10
     window_size: int = 50
-    # shorter episodes = faster smoke runs (raise for production-style runs)
     episode_events: int = 800
     min_trade_unit: int = 100
     max_inventory_units: int = 10
@@ -23,6 +22,9 @@ class ModelConfig:
     n_heads: int = 4
     action_bins_a1: int = 11
     action_bins_a2: int = 11
+    use_dueling: bool = True  # NEW: Enable Dueling DQN
+    use_residual: bool = True  # NEW: Enable residual connections
+    use_layer_norm: bool = True  # NEW: Enable LayerNorm
 
     @property
     def action_dim(self) -> int:
@@ -42,3 +44,6 @@ class TrainConfig:
     epsilon_start: float = 1.0
     epsilon_end: float = 0.05
     epsilon_decay_steps: int = 10_000
+    # NEW: Double DQN and other improvements
+    use_double_dqn: bool = True
+    use_prioritized_replay: bool = False  # Optional: can be enabled later
